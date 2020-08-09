@@ -85,29 +85,41 @@ function test_input($data)
 <body>
     <div class="container">
 
-        <form action="" method="POST">
+        <div>
+            <form action="" method="POST">
 
-            <label>
-                Name:
-                <input type="text" name="name" <?php if ($nameError) echo 'style="border-color: red"' ?>>
-                <span><?php echo $nameError; ?></span>
-            </label>
+                <label>
+                    Name:
+                    <input type="text" name="name" <?php if ($nameError) echo 'style="border-color: red"' ?>>
+                    <span><?php echo $nameError; ?></span>
+                </label>
 
-            <label>
-                Email:
-                <input type="text" name="email" <?php if ($emaiError) echo 'style="border-color: red"' ?>>
-                <span><?php echo $emaiError; ?></span>
-            </label>
+                <label>
+                    Email:
+                    <input type="text" name="email" <?php if ($emaiError) echo 'style="border-color: red"' ?>>
+                    <span><?php echo $emaiError; ?></span>
+                </label>
 
-            <label>
-                Age:
-                <input type="number" name="age" <?php if ($ageError) echo 'style="border-color: red"' ?>>
-                <span><?php echo $ageError; ?></span>
-            </label>
+                <label>
+                    Age:
+                    <input type="number" name="age" <?php if ($ageError) echo 'style="border-color: red"' ?>>
+                    <span><?php echo $ageError; ?></span>
+                </label>
 
 
-            <button>Save</button>
-        </form>
+                <button>Save</button>
+            </form>
+
+            <?php
+            echo $name && $email && $age ? "<h2>Your Input:</h2>" : '';
+            echo $name;
+            echo "<br>";
+            echo $email;
+            echo "<br>";
+            echo $age;
+            ?>
+        </div>
+
 
     </div>
 </body>
