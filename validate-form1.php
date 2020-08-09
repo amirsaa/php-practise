@@ -104,13 +104,13 @@ function test_input($data)
 
                 <label>
                     Email:
-                    <input type="text" name="email" <?php if ($emaiError) echo 'style="border-color: red"' ?>>
+                    <input type="text" name="email" <?php if ($emaiError) echo 'style="border-color: red"' ?> value="<?php echo $email; ?>">
                     <span><?php echo $emaiError; ?></span>
                 </label>
 
                 <label>
                     Age:
-                    <input type="number" name="age" <?php if ($ageError) echo 'style="border-color: red"' ?>>
+                    <input type="number" name="age" <?php if ($ageError) echo 'style="border-color: red"' ?> value="<?php echo $age; ?>">
                     <span><?php echo $ageError; ?></span>
                 </label>
 
