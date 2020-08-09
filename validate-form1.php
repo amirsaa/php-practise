@@ -1,3 +1,34 @@
+<?php
+$emaiError = $nameError = $ageError = '';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $name = test_input($_POST['name']);
+    $email = test_input($_POST['email']);
+    $age = test_input($_POST['age']);
+
+    if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+        $nameError = "Only letters and white space allowed";
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $emaiError = 'Email not invalid';
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $ageError = 'Email not invalid';
+    }
+}
+
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,12 +56,22 @@
             align-items: center;
         }
 
+        label {
+            display: block;
+            margin-bottom: 1rem;
+        }
+
 
         input {
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 5px;
-            margin-bottom: 1rem;
+        }
+
+        span {
+            display: block;
+            font-size: 12px;
+            color: red;
         }
     </style>
 </head>
@@ -42,19 +83,20 @@
 
             <label>
                 Name:
-                <input type="text" name="first_name">
+                <input type="text" name="name" <?php if ($nameError) echo 'style="border-color: red"' ?>>
+                <span><?php echo $nameError; ?></span>
             </label>
-            <br>
+
             <label>
                 Email:
                 <input type="text" name="email">
             </label>
-            <br>
+
             <label>
                 Age:
                 <input type="number" name="age">
             </label>
-            <br>
+
 
             <button>Save</button>
         </form>
@@ -63,27 +105,3 @@
 </body>
 
 </html>
-
-
-<?php
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $emaiError = $nameError = $ageError = false;
-
-    $email = test_input($_POST['email']);
-
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo 'mail is ok';
-    } else {
-        echo 'Error in Email address!';
-    }
-}
-
-function test_input($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
-?>
