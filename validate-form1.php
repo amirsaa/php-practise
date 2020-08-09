@@ -1,7 +1,8 @@
 <?php
-$emaiError = $nameError = $ageError = '';
+$emailError = $nameError = $ageError = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     if (empty($_POST['name'])) {
         $nameError = 'Name is required';
     } else {
@@ -9,17 +10,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($_POST['email'])) {
-        $nameError = 'Email is required';
+        $emailError = 'Email is required';
     } else {
         $email = test_input($_POST['email']);
     }
 
-    $age = test_input($_POST['age']);
+    if (empty($_POST['age'])) {
+        $ageError = 'Age is required';
+    } else {
+        $age = test_input($_POST['age']);
+    }
 
     if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
         $nameError = "Only letters and white space allowed";
     }
 
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $emailError = "Invalid Email!";
+    }
 
     if (!preg_match("/^[0-9]*$/", $age)) {
         $ageError = 'Age is not valid.';
@@ -90,7 +98,7 @@ function test_input($data)
 
                 <label>
                     Name:
-                    <input type="text" name="name" <?php if ($nameError) echo 'style="border-color: red"' ?>>
+                    <input type="text" name="name" <?php if ($nameError) echo 'style="border-color: red"' ?> value="<?php echo $name; ?>">
                     <span><?php echo $nameError; ?></span>
                 </label>
 
