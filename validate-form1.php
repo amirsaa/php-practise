@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $emaiError = 'Email not invalid';
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $ageError = 'Email not invalid';
+    if (!preg_match("/^[1-9]*$/", $age)) {
+        $ageError = 'Age is not valid.';
     }
 }
 
@@ -89,12 +89,14 @@ function test_input($data)
 
             <label>
                 Email:
-                <input type="text" name="email">
+                <input type="text" name="email" <?php if ($nameError) echo 'style="border-color: red"' ?>>
+                <span><?php echo $emaiError; ?></span>
             </label>
 
             <label>
                 Age:
-                <input type="number" name="age">
+                <input type="number" name="age" <?php if ($nameError) echo 'style="border-color: red"' ?>>
+                <span><?php echo $ageError; ?></span>
             </label>
 
 
