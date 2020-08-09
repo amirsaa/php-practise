@@ -2,18 +2,24 @@
 $emaiError = $nameError = $ageError = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (empty($_POST['name'])) {
+        $nameError = 'Name is required';
+    } else {
+        $name = test_input($_POST['name']);
+    }
 
-    $name = test_input($_POST['name']);
-    $email = test_input($_POST['email']);
+    if (empty($_POST['email'])) {
+        $nameError = 'Email is required';
+    } else {
+        $email = test_input($_POST['email']);
+    }
+
     $age = test_input($_POST['age']);
 
     if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
         $nameError = "Only letters and white space allowed";
     }
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emaiError = 'Email not invalid';
-    }
 
     if (!preg_match("/^[0-9]*$/", $age)) {
         $ageError = 'Age is not valid.';
