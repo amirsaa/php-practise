@@ -10,4 +10,4 @@ if ($conn->connect_error) {
     die('<h1>Error: ' . $conn->connect_error . '</h1>');
 }
 
-echo 'YESS';
+echo '<h1>Database Connected Successfully.</h1>';
