@@ -1,0 +1,28 @@
+body {
+  background: #eee;
+  font-family: Helvetica, sans-serif;
+}
+
+.btn {
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-add {
+  background: green;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.wrapper div {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background: #fff;
+  margin: 1rem;
+  padding: 1rem;
+}
