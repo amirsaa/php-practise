@@ -29,3 +29,14 @@ foreach($arr as $item){
 }
 
 echo "<hr>";
+
+
+echo "<h3>while</h3>";
+$counter = 0;
+
+while($counter < count($arr)){
+    echo $arr[$counter]['title'] . ': ' . $arr[$counter]['price'] . '<br>';
+    $counter++;
+}
+
+echo "<hr>";
